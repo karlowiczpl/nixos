@@ -1,18 +1,6 @@
 { pkgs, ... }:
 
 {
-  programs.bash = {
-    profileExtra = ''
-      # if grep -qv fish /proc/$PPID/comm && [[ $SHLVL == [12] ]]; then
-      #     SHELL=${pkgs.fish}/bin/fish exec fish
-      # fi
-      cd /etc/nixos/
-    '';
-    initExtra = ''
-      cd /etc/nixos/
-    '';
-  };
-
   programs.fish = {
     enable = true;
     interactiveShellInit = ''

@@ -1,5 +1,7 @@
 { config, pkgs, ... }:
 {
+  programs.fish.enable = true;
+
   imports = [
     ./hardware-configuration.nix
     ./packages.nix
@@ -56,7 +58,7 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
     ];
-    shell = pkgs.bash;
+    shell = pkgs.fish;
   };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
