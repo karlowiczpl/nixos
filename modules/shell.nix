@@ -2,10 +2,14 @@
 
 {
   programs.bash = {
+    profileExtra = ''
+      # if grep -qv fish /proc/$PPID/comm && [[ $SHLVL == [12] ]]; then
+      #     SHELL=${pkgs.fish}/bin/fish exec fish
+      # fi
+      cd /etc/nixos/
+    '';
     initExtra = ''
-      if grep -qv fish /proc/$PPID/comm && [[ $SHLVL == [12] ]]; then
-          SHELL=${pkgs.fish}/bin/fish exec fish
-      fi
+      cd /etc/nixos/
     '';
   };
 
