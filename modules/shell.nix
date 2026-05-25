@@ -1,6 +1,14 @@
 { pkgs, ... }:
 
 {
+  programs.bash = {
+    initExtra = ''
+      if grep -qv fish /proc/$PPID/comm && [[ $SHLVL == [12] ]]; then
+          SHELL=${pkgs.fish}/bin/fish exec fish
+      fi
+    '';
+  };
+
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
