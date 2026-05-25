@@ -1,6 +1,15 @@
 { pkgs, config, ... }:
 
 {
+  home.packages = [
+    pkgs.luajit
+    (pkgs.luajit.withPackages (ps: with ps; [
+      pkgs.luaPackages.luafilesystem
+      pkgs.luaPackages.luv
+      pkgs.luaPackages.cjson
+    ]))
+  ];
+
   inlayHints.enable = true;
   programs.luasnip.enable = true;
 

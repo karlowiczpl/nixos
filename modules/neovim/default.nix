@@ -12,6 +12,7 @@
     plugins.lz-n.enable = true;
     globals.mapleader = " ";
     nixpkgs.source = inputs.nixpkgs;
+    plugins.luasnip.enable = true;
 
     imports = [
       ./colorscheme.nix

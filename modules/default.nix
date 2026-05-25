@@ -6,5 +6,8 @@
     ./alacritty.nix
     ./shell.nix
     ./firefox.nix
+    ./dconf.nix
+    ./virt.nix
+    ./tmux.nix
   ];
 }
