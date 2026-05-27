@@ -12,8 +12,19 @@
     "Z /etc/nixos 0755 karol users -"
   ];
 
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
+
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
+
   boot.loader.limine.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
