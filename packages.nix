@@ -12,6 +12,7 @@ let
     nautilus
     alacritty
     spotify
+    prusa-slicer
   ];
   virt = with pkgs; [
     gnome-boxes
@@ -19,6 +20,8 @@ let
   dev = with pkgs; [
     gcc
     git
+  ];
+  microchip = with pkgs; [
   ];
   sys = with pkgs; [
     grc
@@ -28,13 +31,19 @@ let
     gsettings-desktop-schemas
     xdg-desktop-portal
     xdg-desktop-portal-gtk
+    inkscape
 
-    # Nadpisujemy FreeCAD bezpośrednio w jego własnym wrapperze QT
-    (freecad.overrideAttrs (oldAttrs: {
-      qtWrapperArgs = (oldAttrs.qtWrapperArgs or []) ++ [
-        "--prefix" "XDG_DATA_DIRS" ":" "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}"
-      ];
-    }))
+    (pkgs.symlinkJoin {
+      name = "freecad-fixed";
+      paths = [ pkgs.freecad ];
+      nativeBuildInputs = [ pkgs.makeWrapper ];
+      postBuild = ''
+        wrapProgram $out/bin/freecad \
+          --prefix XDG_DATA_DIRS : "${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}" \
+          --prefix XDG_DATA_DIRS : "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}" \
+          --set GSETTINGS_SCHEMA_DIR "${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}/glib-2.0/schemas"
+      '';
+    })
   ];
 in
 
@@ -45,7 +54,8 @@ in
     ++ gui
     ++ virt
     ++ dev
-    ++ sys;
+    ++ sys
+    ++ microchip;
 
   programs.dconf.enable = true;
 
@@ -55,12 +65,12 @@ in
     dedicatedServer.openFirewall = true;
   };
 
+  environment.extraInit = ''
+    export XDG_DATA_DIRS="$XDG_DATA_DIRS:${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}"
+  '';
+
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.kdePackages.xdg-desktop-portal-kde ];
-  };
-
-  environment.sessionVariables = {
-    GSETTINGS_SCHEMA_DIR = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}/glib-2.0/schemas";
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 }

@@ -6,6 +6,7 @@
     ./hardware-configuration.nix
     ./packages.nix
     ./desktop.nix
+    ./virtual.nix
   ];
 
   systemd.tmpfiles.rules = [

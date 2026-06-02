@@ -9,5 +9,6 @@
     ./dconf.nix
     ./virt.nix
     ./tmux.nix
+    ./microchip.nix
   ];
 }
