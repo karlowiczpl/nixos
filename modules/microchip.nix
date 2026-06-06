@@ -4,8 +4,8 @@
   programs.vscode = {
     enable = true;
 
-    profiles.default.extension = [
-      pkgs.vscode-extensions.vscodevim.vim
-    ];
+    # profiles.default.extension = [
+    #   pkgs.vscode-extensions.vscodevim.vim
+    # ];
   };
 }

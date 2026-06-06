@@ -2,23 +2,28 @@
   description = "A simple flake for home-manager";
 
   inputs = {
-	nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-	flake-parts = {
-	      url = "github:hercules-ci/flake-parts";
-	      inputs.nixpkgs-lib.follows = "nixpkgs";
-	    };
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    flake-parts = {
+          url = "github:hercules-ci/flake-parts";
+          inputs.nixpkgs-lib.follows = "nixpkgs";
+        };
 
-	home-manager = {
-	    type = "github";
-	    owner = "nix-community";
-	    repo = "home-manager";
-	    inputs.nixpkgs.follows = "nixpkgs";
-	  };
+    home-manager = {
+        type = "github";
+        owner = "nix-community";
+        repo = "home-manager";
+        inputs.nixpkgs.follows = "nixpkgs";
+      };
 
-	nixvim = {
-	      url = "github:nix-community/nixvim";
-	      inputs.nixpkgs.follows = "nixpkgs";
-	    };
+    nixvim = {
+          url = "github:nix-community/nixvim";
+          inputs.nixpkgs.follows = "nixpkgs";
+        };
+
+    pico-sdk = {
+      url = "git+https://github.com/raspberrypi/pico-sdk?submodules=1";
+      flake = false;
+    };
   };
 
   outputs = inputs:

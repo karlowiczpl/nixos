@@ -21,7 +21,13 @@
       servers = {
         nixd.enable = true;
         bashls.enable = true;
-        clangd.enable = true;
+        clangd = {
+          enable = true;
+          cmd = [
+            "${pkgs.clang-tools}/bin/clangd"
+            "--header-insertion=never"
+          ];
+        };
         ruff.enable = true;
         gopls.enable = true;
         pyright.enable = true;
