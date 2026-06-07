@@ -67,7 +67,7 @@
   users.users.karol = {
     isNormalUser = true;
     description = "Karol Karłowski";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "dialout" "tty" ];
     packages = with pkgs; [
     ];
     shell = pkgs.fish;
