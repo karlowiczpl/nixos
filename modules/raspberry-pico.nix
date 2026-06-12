@@ -10,6 +10,7 @@
       binutils
       picotool
       minicom
+      python3Packages.pyserial
     ];
 
     file."Repo/pico/sdk".source = inputs.pico-sdk;

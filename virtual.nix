@@ -24,7 +24,7 @@
       };
 
       share = {
-        path = "/home/karol/Electronics/";
+        path = "/shr/Electronics/";
         browseable = "yes";
         writable = "yes";
         "guest ok" = "yes";
@@ -32,4 +32,8 @@
       };
     };
   };
+  systemd.tmpfiles.rules = [
+    "d /shr 0755 root root -"
+    "d /shr/Electronics 0755 karol users -"
+  ];
 }
