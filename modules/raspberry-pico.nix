@@ -4,13 +4,17 @@
   home = {
     packages = with pkgs; [
       cmake
-      python3
+      # python3
       gcc-arm-embedded
       gnumake
       binutils
       picotool
       minicom
-      python3Packages.pyserial
+      # python3Packages.pyserial
+
+      (python3.withPackages (ps: [
+        ps.pyserial
+      ]))
     ];
 
     file."Repo/pico/sdk".source = inputs.pico-sdk;
