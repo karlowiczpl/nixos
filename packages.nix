@@ -20,6 +20,9 @@ let
   dev = with pkgs; [
     gcc
     git
+    wireshark
+    dhcpcd
+    socat
   ];
   microchip = with pkgs; [
   ];
@@ -57,6 +60,7 @@ in
     ++ sys
     ++ microchip;
 
+  networking.useDHCP = false;
   programs.dconf.enable = true;
 
   programs.steam = {
