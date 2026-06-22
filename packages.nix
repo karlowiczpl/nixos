@@ -23,6 +23,7 @@ let
     wireshark
     dhcpcd
     socat
+    xxd
   ];
   microchip = with pkgs; [
   ];
@@ -62,6 +63,7 @@ in
 
   networking.useDHCP = false;
   programs.dconf.enable = true;
+  programs.nix-ld.enable = true;
 
   programs.steam = {
     enable = true;

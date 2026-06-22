@@ -11,5 +11,6 @@
     ./tmux.nix
     ./microchip.nix
     ./raspberry-pico.nix
+    ./esp.nix
   ];
 }

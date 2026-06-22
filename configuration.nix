@@ -53,7 +53,16 @@
 
   console.keyMap = "pl2";
 
-  services.printing.enable = true;
+  services.printing = {
+    enable = true;
+    drivers = [ pkgs.hplip ];
+  };
+
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
 
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
