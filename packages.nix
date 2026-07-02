@@ -2,6 +2,8 @@
 let
   cli = with pkgs; [
     unzip
+    qmk
+    via
   ];
   network = with pkgs; [
     nmap
@@ -24,6 +26,7 @@ let
     dhcpcd
     socat
     xxd
+    gdb
   ];
   microchip = with pkgs; [
   ];
@@ -79,4 +82,10 @@ in
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
+
+  hardware.keyboard.qmk = {
+    enable = true;
+  };
+
+  services.udev.packages = [ pkgs.via ];
 }
