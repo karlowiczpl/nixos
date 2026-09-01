@@ -13,6 +13,17 @@
     "Z /etc/nixos 0755 karol users -"
   ];
 
+  services.udev.extraRules = ''
+    # Microchip PICkit 3
+    ATTRS{idVendor}=="04d8", ATTRS{idProduct}=="0033", MODE="0666", GROUP="plugdev"
+    # Microchip PICkit 4
+    ATTRS{idVendor}=="04d8", ATTRS{idProduct}=="9012", MODE="0666", GROUP="plugdev"
+    # Microchip ICD 4
+    ATTRS{idVendor}=="04d8", ATTRS{idProduct}=="9011", MODE="0666", GROUP="plugdev"
+    # Ogólna reguła dla reszty narzędzi Microchipa
+    SUBSYSTEM=="usb", ATTRS{idVendor}=="04d8", MODE="0666", GROUP="plugdev"
+  '';
+
   hardware.graphics = {
     enable = true;
     enable32Bit = true;

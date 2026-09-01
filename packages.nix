@@ -4,11 +4,15 @@ let
     unzip
     qmk
     via
+    uv
+    cameractrls-gtk4
+    impression
   ];
   network = with pkgs; [
     nmap
     arp-scan
     google-chrome
+    zeroad
   ];
   gui = with pkgs; [
     nautilus
